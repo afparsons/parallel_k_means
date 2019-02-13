@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <vector>
+#include <omp.h>
 
 #include "attribute_value_generator.cpp"
 #include "kmeans.cpp"
@@ -35,6 +36,9 @@ int main(int argc, char *argv[])
     // }
 
     KMeans kmeans(k_num_clusters, iterations);
+    double duration, start = omp_get_wtime();
     kmeans.cluster(all_points);
+    duration = omp_get_wtime() - start;
+    std::cout << "Duration: " << duration << "\n";
     return 0;
 }

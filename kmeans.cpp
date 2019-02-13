@@ -228,28 +228,30 @@ class KMeans {
                 iteration++;
             } /* end while */
 
+            // ! only enable for small sets
             // print the id_points for each cluster
-            for (int i = 0; i < k_num_clusters; i++) {
-                std::cout << "Points in cluster " << list_clusters[i].get_id_cluster() << ": ";
-                std::cout << list_clusters[i].get_num_points() << "\n";
-                for (int j = 0; j < list_clusters[i].get_num_points(); j++) {
-                    std::cout << list_clusters[i].get_point(j).get_id_point();
-                    std::cout << " < ";
-                    for ( double value : list_clusters[i].get_point(j).get_attribute_values()) {
-                        std::cout << value << ", ";
-                    }
-                    std::cout << ">" << "\n";
-                }
-                std::cout << "\n";
-            }
-            std::cout << "=============" << "\n";
+            // for (int i = 0; i < k_num_clusters; i++) {
+            //     std::cout << "Points in cluster " << list_clusters[i].get_id_cluster() << ": ";
+            //     std::cout << list_clusters[i].get_num_points() << "\n";
+            //     for (int j = 0; j < list_clusters[i].get_num_points(); j++) {
+            //         std::cout << list_clusters[i].get_point(j).get_id_point();
+            //         std::cout << " < ";
+            //         for ( double value : list_clusters[i].get_point(j).get_attribute_values()) {
+            //             std::cout << value << ", ";
+            //         }
+            //         std::cout << ">" << "\n";
+            //     }
+            //     std::cout << "\n";
+            // }
+            // std::cout << "=============" << "\n";
 
-            for (int i = 0; i< k_num_clusters; i++){
-                std::cout << "Cluster "<< list_clusters[i].get_id_cluster() << " centroid : ";
-                for (int j = 0; j < num_attributes; j++){
-                    std::cout << list_clusters[i].get_centroid_attribute_value(j) << " ";     //Output to console
-                }
-                std::cout << "\n";
-        }
-    }
-};
+            // ! only enable for small sets
+            // for (int i = 0; i< k_num_clusters; i++) {
+            //     std::cout << "Cluster "<< list_clusters[i].get_id_cluster() << " centroid : ";
+            //     for (int j = 0; j < num_attributes; j++){
+            //         std::cout << list_clusters[i].get_centroid_attribute_value(j) << " ";     //Output to console
+            //     }
+            //     std::cout << "\n";
+            // }
+        } /* end cluster() */
+}; /* end class */
