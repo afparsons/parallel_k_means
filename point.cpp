@@ -1,13 +1,25 @@
 /**
- * Sequential K Means
- * Andrew Parsons
+ * COMP 481: Applied Parallel Algorithms
+ * Dr. Sandino Vargas-Perez
+ * Final Project - Parallelized K-Means Clustering
+ * 14 February 2019
+ * Andrew Parsons, Hans Wieland
+ * This program is based heavily upon the following two implementations:
+ * https://github.com/aditya1601/kmeans-clustering-cpp/blob/master/kmeans.cpp
+ * https://github.com/marcoscastro/kmeans/blob/master/kmeans.cpp
+ * Our plan is to extend this program's functionality through parallelization
+ * and by integrating plaintext processing functionality.
  * 
+ * === === === point.cpp === === === === === === === === === ===
+ * 
+ * This class defines a point object.
+ * TODO: split into header (.hpp) and implementation (.cpp)
  */
 
 /* === === === INCLUDES === === === === === === */
-
 #include <vector> 
 
+/* === === === CLASS DEFINITION === === === === === === */
 class Point {
     private:
         int id_point;
@@ -15,20 +27,29 @@ class Point {
         int attribute_set_size;
         // ? more advanced implementation: perhaps better as a map?
         std::vector<double> attribute_values;
-    public:
-        
+    
+    public:    
         /**
          * Constructor.
-         *  ? ? ?
+         * @param int, id_point:                            unique key
+         * @param std::vector<double>, attribute_values:    the list of attribute values for this point
          */
         Point(int id_point, std::vector<double>& attribute_values) {
-        //: id_point(id_point), attribute_values(attribute_values), attribute_set_size(attribute_values.size()) 
-            
+            // ? is the "this->" syntax necessary ?
+
+            // unique key            
             this->id_point = id_point;
+
+            // the list of attribute values for this point
             this->attribute_values = attribute_values;
+
+            // this is the "dimension" of the problem
             this->attribute_set_size = attribute_values.size();
-            this->id_cluster = -1;            
-        // perhaps implement the 'Rule of Three/Five' for the constructor
+            
+            // points initially do not belong to a cluster
+            this->id_cluster = -1;
+
+            // ? perhaps implement the "Rule of Three/Five" for the constructor
         }
 
         /**

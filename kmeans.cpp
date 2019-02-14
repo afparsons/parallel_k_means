@@ -1,27 +1,31 @@
 /**
- * Sequential K Means
- * Andrew Parsons
+ * COMP 481: Applied Parallel Algorithms
+ * Dr. Sandino Vargas-Perez
+ * Final Project - Parallelized K-Means Clustering
+ * 14 February 2019
+ * Andrew Parsons, Hans Wieland
+ * This program is based heavily upon the following two implementations:
+ * https://github.com/aditya1601/kmeans-clustering-cpp/blob/master/kmeans.cpp
+ * https://github.com/marcoscastro/kmeans/blob/master/kmeans.cpp
+ * Our plan is to extend this program's functionality through parallelization
+ * and by integrating plaintext processing functionality.
  * 
+ * === === === kmeans.cpp === === === === === === === === === ===
+ * 
+ * This class defines a KMeans object.
+ * TODO: split into header (.hpp) and implementation (.cpp)
  */
 
 /* === === === INCLUDES === === === === === === */
-
 #include <iostream>         // cout
-#include <vector>           // vectors
-#include <math.h>           
-#include <stdlib.h>     
+#include <vector>           // vectors              
 #include <omp.h>           // timing
-#include <algorithm>
+#include <algorithm>       // std::find
 
 /* custom classes */
-
-//#include "point.cpp"
 #include "cluster.cpp"
 
-/* === === === FUNCTION DECLARATIONS === === === === === === */
-/* === === === FUNCTION DEFINITIONS === === === === === === */
-
-// TODO: Break into seperate into header and implementation
+/* === === === CLASS DEFINITION === === === === === === */
 class KMeans {
     private:
         // list of clusters

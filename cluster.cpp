@@ -1,20 +1,30 @@
 /**
- * Sequential K Means
- * Andrew Parsons
+ * COMP 481: Applied Parallel Algorithms
+ * Dr. Sandino Vargas-Perez
+ * Final Project - Parallelized K-Means Clustering
+ * 14 February 2019
+ * Andrew Parsons, Hans Wieland
+ * This program is based heavily upon the following two implementations:
+ * https://github.com/aditya1601/kmeans-clustering-cpp/blob/master/kmeans.cpp
+ * https://github.com/marcoscastro/kmeans/blob/master/kmeans.cpp
+ * Our plan is to extend this program's functionality through parallelization
+ * and by integrating plaintext processing functionality.
  * 
+ * === === === cluster.cpp === === === === === === === === === ===
+ * 
+ * This class defines a cluster object.
+ * TODO: split into header (.hpp) and implementation (.cpp)
  */
 
 /* === === === INCLUDES === === === === === === */
-
 #include <vector> 
 
 /* custom classes */
 #include "point.cpp"
 
-
+/* === === === CLASS DEFINITION === === === === === === */
 class Cluster {
     private:
-        
         // id of the cluster
         int id_cluster;
         
@@ -23,11 +33,12 @@ class Cluster {
 
         // list of points belonging to this cluster
         std::vector<Point> list_points;
+    
     public:
-        
         /**
          * Constructor.
-         *  ? ? ?
+         * @param int, id_cluster: unique key
+         * @param Point, centroid: the centroid point of the cluster
          */
         Cluster(int id_cluster, Point centroid) {
 
@@ -38,7 +49,7 @@ class Cluster {
             }
 
             this->insert_point_into_cluster(centroid);
-        // perhaps implement the 'Rule of Three/Five' for the constructor
+        // ? perhaps implement the 'Rule of Three/Five' for the constructor
         }
 
         // TODO: better return type
@@ -71,7 +82,9 @@ class Cluster {
         /**
          * get
          */
-        int get_id_cluster() {return id_cluster;} 
+        int get_id_cluster() {
+            return id_cluster;
+        } 
 
         /**
          * get
@@ -94,10 +107,16 @@ class Cluster {
             return list_points.size();
         }
 
+        /**
+         * get
+         */
         double get_centroid_attribute_value(int index) {
             return centroid_attribute_values[index];
         }
 
+        /**
+         * set
+         */
         void set_centroid_attribute_value(int index, double value){
             this->centroid_attribute_values[index] = value;
         }
