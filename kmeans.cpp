@@ -16,11 +16,15 @@
  * TODO: split into header (.hpp) and implementation (.cpp)
  */
 
+#ifndef KMEANS
+#define KMEANS
+
 /* === === === INCLUDES === === === === === === */
-#include <iostream>         // cout
-#include <vector>           // vectors              
+#include <iostream>        // cout
+#include <vector>          // vectors              
 #include <omp.h>           // timing
 #include <algorithm>       // std::find
+#include <math.h>          // std::sqrt
 
 /* custom classes */
 #include "cluster.cpp"
@@ -42,10 +46,6 @@ class KMeans {
 
         // number of attributes
         int num_attributes;
-
-        // double calculate_euclidean_distance(std::vector<Cluster> list_clusters, int cluster_index, int centroid_attribute_value_index, Point point, int point_attribute_value_index) {           
-        //     return std::pow(list_clusters[0].get_centroid_attribute_value(i) - point.get_attribute_value_at_index(i), 2.0 );
-        // }
 
         /**
          * TODO: describe this
@@ -234,20 +234,22 @@ class KMeans {
 
             // ! only enable for small sets
             // print the id_points for each cluster
-            // for (int i = 0; i < k_num_clusters; i++) {
-            //     std::cout << "Points in cluster " << list_clusters[i].get_id_cluster() << ": ";
-            //     std::cout << list_clusters[i].get_num_points() << "\n";
-            //     for (int j = 0; j < list_clusters[i].get_num_points(); j++) {
-            //         std::cout << list_clusters[i].get_point(j).get_id_point();
-            //         std::cout << " < ";
-            //         for ( double value : list_clusters[i].get_point(j).get_attribute_values()) {
-            //             std::cout << value << ", ";
-            //         }
-            //         std::cout << ">" << "\n";
-            //     }
-            //     std::cout << "\n";
-            // }
-            // std::cout << "=============" << "\n";
+            for (int i = 0; i < k_num_clusters; i++) {
+                std::cout << "Points in cluster " << list_clusters[i].get_id_cluster() << ": ";
+                std::cout << list_clusters[i].get_num_points() << "\n";
+                for (int j = 0; j < list_clusters[i].get_num_points(); j++) {
+                    std::cout << list_clusters[i].get_point(j).get_id_point() << ", ";
+                    // std::cout << " < ";
+                    // for ( double value : list_clusters[i].get_point(j).get_attribute_values()) {
+                    //     std::cout << value << ", ";
+                    // }
+                    // std::cout << ">" << "\n";
+
+                    // list_clusters[i].get_point(j).print_point();
+                }
+                std::cout << "\n";
+            }
+            std::cout << "=============" << "\n";
 
             // ! only enable for small sets
             // for (int i = 0; i< k_num_clusters; i++) {
@@ -259,3 +261,5 @@ class KMeans {
             // }
         } /* end cluster() */
 }; /* end class */
+
+#endif

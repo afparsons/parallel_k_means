@@ -21,9 +21,12 @@
 #include <vector>
 #include <omp.h>
 
+#include "tinydir.h"
+
 /* custom classes */
 #include "attribute_value_generator.cpp"
 #include "kmeans.cpp"
+#include "vectorizer.cpp"
 
 /* === === === FUNCTIONS === === === === === === */
 
@@ -50,14 +53,52 @@ int main(int argc, char *argv[])
     sscanf (argv[3], "%d", &k_num_clusters);
     sscanf (argv[4], "%d", &max_iterations);
 
-    Attribute_Value_Generator attribute_value_generator = Attribute_Value_Generator();
-    
-    std::vector<Point> all_points;
-    for (int i = 0; i < num_points; i++) {
-        std::vector<double> attribute_values = attribute_value_generator.generate_double_vector(num_attributes, 1, 9);
-        Point point(i, attribute_values);
-        all_points.push_back(point);
+    // Attribute_Value_Generator attribute_value_generator = Attribute_Value_Generator();
+    // std::vector<std::string> corpus = {"apples", "bananas", "cherries", "donuts", "eclair", "froyo"};
+    // attribute_value_generator.generate_string_vector(10, corpus);
+    // std::cout << "============" << "\n";
+    // // attribute_value_generator.reduce_string_to_word_set("Hello, my name is Andrew; I am a student at Kalamazoo College.");
+    // std::vector<std::string> myVec = attribute_value_generator.tokenize_string("Test one two three, four five six; seven eight: nine.ten");
+    // attribute_value_generator.string_vector_to_set(myVec);
+
+    // std::vector<Point> all_points;
+    // // generate double-points and add them to all_points
+    // for (int i = 0; i < num_points; i++) {
+    //     std::vector<double> attribute_values = attribute_value_generator.generate_double_vector(num_attributes, 1, 9);
+    //     Point point(i, attribute_values);
+    //     all_points.push_back(point);
+    // }
+
+    std::vector<std::string> file_paths;
+
+    // const char * directory_path = "/home/andrew/comp_481/final/src/pos_subset/";
+    const char * directory_path = "/home/aparsons/Development/comp_481/final/src/input_data/abcnews/headlines/";
+
+    tinydir_dir dir;
+    tinydir_open_sorted(&dir, directory_path);
+    for (int i = 0; i < dir.n_files; i++) {
+        tinydir_file file;
+        tinydir_readfile_n(&dir, &file, i);
+        std::stringstream ss;
+        if (!file.is_dir) {
+            ss << directory_path << file.name;
+            file_paths.push_back(ss.str());
+            // std::cout << directory_path << file.name << "\n";
+        }
     }
+    tinydir_close(&dir);
+
+    // file_paths.push_back("/home/aparsons/Development/comp_481/final/src/0.txt");
+    // file_paths.push_back("/home/aparsons/Development/comp_481/final/src/1.txt");
+    // file_paths.push_back("/home/aparsons/Development/comp_481/final/src/2.txt");
+
+    Vectorizer vectorizer = Vectorizer(file_paths, "./stopwords.txt");
+    std::vector<Point> all_points = vectorizer.go();
+    // vectorizer.print_word_map();
+
+    // for (Point p : all_points) {
+    //     p.print_point();
+    // }
 
     KMeans kmeans(k_num_clusters, max_iterations);
     double duration, start = omp_get_wtime();
@@ -66,3 +107,9 @@ int main(int argc, char *argv[])
     std::cout << "Duration: " << duration << "\n";
     return 0;
 }
+
+
+// std::vector<std::string> get_filepaths_in_directory(std::string directory) {
+//     auto dir = std::opendir(directory.c_str());
+    
+// }

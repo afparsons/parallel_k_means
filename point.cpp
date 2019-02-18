@@ -16,6 +16,9 @@
  * TODO: split into header (.hpp) and implementation (.cpp)
  */
 
+#ifndef POINT
+#define POINT
+
 /* === === === INCLUDES === === === === === === */
 #include <vector> 
 
@@ -88,4 +91,18 @@ class Point {
             this->id_cluster = id_cluster;
         }
 
+        /**
+         * print
+         */
+        void print_point() {
+            std::cout << "Point ID: " << id_point << "\n";
+            std::cout << "Cluster : " << id_cluster << "\n";
+            std::cout << "=== Attribute Values ===" << "\n";
+            for (double attribute_value : attribute_values) {
+                std::cout << attribute_value << "\n";
+            }
+            std::cout << "========================" << "\n";
+        }
 };
+
+#endif

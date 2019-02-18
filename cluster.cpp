@@ -16,6 +16,9 @@
  * TODO: split into header (.hpp) and implementation (.cpp)
  */
 
+#ifndef CLUSTER
+#define CLUSTER
+
 /* === === === INCLUDES === === === === === === */
 #include <vector> 
 
@@ -122,3 +125,5 @@ class Cluster {
         }
 
 };
+
+#endif

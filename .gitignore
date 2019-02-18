@@ -1,0 +1,15 @@
+# Compiled source #
+###################
+.o
+
+# Executables #
+###################
+kmeans
+
+# Sample Data #
+###################
+/input_data
+
+# VSCode #
+###################
+.vscode
