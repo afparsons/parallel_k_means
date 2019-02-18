@@ -31,8 +31,10 @@ Fourth param: max iterations.
 ## To-Do
 
 - [ ] Improve README.md
-- [ ] Replace `sscanf` with `getop`
+- [ ] Replace `sscanf` with `getopt`
 - [ ] Implement document directory as runtime argument
 - [ ] Clean up `vectorizer.cpp`
+- [ ] Use better variable names in `vectorizer.cpp`
 - [ ] Optimize sequential program
-- [ ] Parallelize lol
+- [ ] Benchmark sequential program
+- [ ] Parallelize everything lol
