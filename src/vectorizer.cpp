@@ -13,7 +13,7 @@
 #include <boost/algorithm/string.hpp>
 
 // stemming
-#include "oleander/stemming/english_stem.h"
+#include "../include/oleander/stemming/english_stem.h"
 #include <sstream>
 #include <fstream>
 #include <codecvt>

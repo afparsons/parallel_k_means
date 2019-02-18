@@ -22,7 +22,7 @@
 #include <omp.h>
 
 /* from GitHub */
-#include "tinydir.h"
+#include "../include/tinydir.h"
 
 /* custom classes */
 #include "attribute_value_generator.cpp"
