@@ -35,6 +35,7 @@ Fourth param: max iterations.
 - [ ] Implement document directory as runtime argument
 - [ ] Clean up `vectorizer.cpp`
 - [ ] Use better variable names in `vectorizer.cpp`
+- [ ] Configure guards
 - [ ] Optimize sequential program
 - [ ] Benchmark sequential program
 - [ ] Parallelize everything lol

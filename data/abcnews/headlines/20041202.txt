@@ -1,0 +1,1 @@
+worker critical after mining accident

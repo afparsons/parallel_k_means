@@ -2,13 +2,11 @@
 ###################
 .o
 
-# Executables #
+# Directories #
 ###################
-kmeans
-
-# Sample Data #
-###################
+/bin
 /input_data
+/inspiration
 
 # VSCode #
 ###################
