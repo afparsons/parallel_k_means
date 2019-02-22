@@ -14,7 +14,9 @@ Parallelized using _____.
 
 Download to your project directory and compile.
 
-`g++ -fopenmp kmeans.cpp -o kmeans`
+`g++ -fopenmp src/kmeans.cpp -o bin/kmeans`
+
+Might require the C++ Boost libraries to compile.
 
 ## Usage
 
@@ -27,6 +29,8 @@ Second param: number of attributes for each point. Only used for random point ge
 Third param: `k` number of clusters.
 
 Fourth param: max iterations.
+
+Note: the numbers are in colors I've not yet tested to work in a white-color terminal (like macOS's Terminal.app).
 
 ## To-Do
 

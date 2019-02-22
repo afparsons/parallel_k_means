@@ -21,6 +21,7 @@
 
 /* === === === INCLUDES === === === === === === */
 #include <iostream>        // cout
+#include <fstream>         // opening txt
 #include <vector>          // vectors              
 #include <omp.h>           // timing
 #include <algorithm>       // std::find
@@ -181,7 +182,7 @@ class KMeans {
                         // if point is not at the initial dummy cluster
                         if (current_id_cluster != -1) {
 
-                            // then remove it from all clusters it belongs to 
+                            // then remove it from the other cluster it belongs to 
                             for (int j = 0; j < k_num_clusters; j++) {
                                 if (list_clusters[j].get_id_cluster() == current_id_cluster) {
                                     list_clusters[j].remove_point_from_cluster(all_points[i].get_id_point());
@@ -235,10 +236,16 @@ class KMeans {
             // ! only enable for small sets
             // print the id_points for each cluster
             for (int i = 0; i < k_num_clusters; i++) {
-                std::cout << "Points in cluster " << list_clusters[i].get_id_cluster() << ": ";
+                std::cout << "\033[1;95;46mPoints in cluster " << list_clusters[i].get_id_cluster() << ": \033[32m";
                 std::cout << list_clusters[i].get_num_points() << "\n";
                 for (int j = 0; j < list_clusters[i].get_num_points(); j++) {
-                    std::cout << list_clusters[i].get_point(j).get_id_point() << ", ";
+                    std::cout << "\033[0;1;32m" << list_clusters[i].get_point(j).get_id_point() << "\033[0m: ";
+                    // std::cout << list_clusters[i].get_point(j).get_file_name() << "\n";
+                    std::ifstream f(list_clusters[i].get_point(j).get_file_name());
+                    if (f.is_open())
+                        std::cout << f.rdbuf();
+                    std::cout << "\n";
+
                     // std::cout << " < ";
                     // for ( double value : list_clusters[i].get_point(j).get_attribute_values()) {
                     //     std::cout << value << ", ";

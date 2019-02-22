@@ -220,6 +220,7 @@ class Vectorizer {
         /**
          * go()
          * TODO: better name
+         * 
          */
         std::vector<Point> go() {
             std::vector<Point> all_points;
@@ -229,7 +230,7 @@ class Vectorizer {
                 if (word_vector.size() > 0 ) {
                     std::vector<double> attribute_values;
                     map_values_to_vector(build_tf_idf(word_vector), attribute_values);
-                    all_points.push_back(Point(i, attribute_values));
+                    all_points.push_back(Point(i, attribute_values, file_paths[i]));
                 }
             }
             return all_points;

@@ -20,7 +20,8 @@
 #define POINT
 
 /* === === === INCLUDES === === === === === === */
-#include <vector> 
+#include <vector>
+#include <string> 
 
 /* === === === CLASS DEFINITION === === === === === === */
 class Point {
@@ -30,6 +31,7 @@ class Point {
         int attribute_set_size;
         // ? more advanced implementation: perhaps better as a map?
         std::vector<double> attribute_values;
+        std::string file_name;
     
     public:    
         /**
@@ -37,7 +39,7 @@ class Point {
          * @param int, id_point:                            unique key
          * @param std::vector<double>, attribute_values:    the list of attribute values for this point
          */
-        Point(int id_point, std::vector<double>& attribute_values) {
+        Point(int id_point, std::vector<double>& attribute_values, std::string fileName) {
             // ? is the "this->" syntax necessary ?
 
             // unique key            
@@ -52,6 +54,8 @@ class Point {
             // points initially do not belong to a cluster
             this->id_cluster = -1;
 
+            // initialize the file_name
+            this->file_name = fileName;
             // ? perhaps implement the "Rule of Three/Five" for the constructor
         }
 
@@ -89,6 +93,20 @@ class Point {
          */
         void set_id_cluster(int id_cluster) {
             this->id_cluster = id_cluster;
+        }
+
+        /**
+         * get
+         */
+        std::string get_file_name() {
+            return file_name;
+        }
+
+        /**
+         * set
+         */
+        void set_file_name(std::string file_name) {
+            this->file_name = file_name;
         }
 
         /**

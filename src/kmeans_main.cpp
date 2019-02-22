@@ -72,8 +72,8 @@ int main(int argc, char *argv[])
 
     std::vector<std::string> file_paths;
 
-    const char * directory_path = "/home/andrew/comp_481/final/parallel_k_means/data/abcnews/headlines/";
-    // const char * directory_path = "/home/aparsons/Development/comp_481/final/src/input_data/abcnews/headlines/";
+    // const char * directory_path = "/home/andrew/comp_481/final/parallel_k_means/data/abcnews/headlines/";
+    const char * directory_path = "/home/aparsons/Development/comp_481/final/data/abcnews/headlines_subset/";
 
     tinydir_dir dir;
     tinydir_open_sorted(&dir, directory_path);
@@ -88,10 +88,6 @@ int main(int argc, char *argv[])
         }
     }
     tinydir_close(&dir);
-
-    // file_paths.push_back("/home/aparsons/Development/comp_481/final/src/0.txt");
-    // file_paths.push_back("/home/aparsons/Development/comp_481/final/src/1.txt");
-    // file_paths.push_back("/home/aparsons/Development/comp_481/final/src/2.txt");
 
     Vectorizer vectorizer = Vectorizer(file_paths, "../data/stopwords.txt");
     std::vector<Point> all_points = vectorizer.go();
