@@ -3,7 +3,7 @@
  * Dr. Sandino Vargas-Perez
  * Final Project - Parallelized K-Means Clustering
  * 14 February 2019
- * Andrew Parsons, Hans Wieland
+ * Andrew Parsons
  * This program is based heavily upon the following two implementations:
  * https://github.com/aditya1601/kmeans-clustering-cpp/blob/master/kmeans.cpp
  * https://github.com/marcoscastro/kmeans/blob/master/kmeans.cpp
@@ -18,12 +18,18 @@
  */
 
 /* === === === INCLUDES === === === === === === */
+
+/* basic functions */
 #include <iostream>     // cout
-#include <random>       // Mersenne Twister
+#include <cstring>      // string, strtok
+
+/* data */
 #include <vector>       // vector
 #include <map>          // map    
-#include <set>          // set    
-#include <cstring>       // string, strtok
+#include <set>          // set
+
+/* other */
+#include <random>       // Mersenne Twister
 
 /* === === === CLASS DEFINITION === === === === === === === === === */
 class Attribute_Value_Generator {
@@ -114,18 +120,18 @@ class Attribute_Value_Generator {
             return word_map;
         }
 
-        std::vector<int> string_to_int_vector(std::string input_string) {
-            std::vector<std::string> word_vec = tokenize_string(input_string);
-            std::set<std::string> word_set = string_vector_to_set(word_vec);
-            std::map<std::string, int> word_map = set_to_map(word_set);
+        // std::vector<int> string_to_int_vector(std::string input_string) {
+        //     std::vector<std::string> word_vec = tokenize_string(input_string);
+        //     std::set<std::string> word_set = string_vector_to_set(word_vec);
+        //     std::map<std::string, int> word_map = set_to_map(word_set);
 
-            for (std::string word : word_vec) {
-                word_map[word]++;
-            }
+        //     for (std::string word : word_vec) {
+        //         word_map[word]++;
+        //     }
 
-            
-
-        }
+        //     // ! complete this
+        //     // return
+        // }
 
         /**
          * print_double_vector()

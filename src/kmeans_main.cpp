@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
     tinydir_close(&dir);
 
     Vectorizer vectorizer = Vectorizer(file_paths, "../data/stopwords.txt");
-    std::vector<Point> all_points = vectorizer.go();
+    std::vector<Point> all_points = vectorizer.tf_idf_vectorize();
     // vectorizer.print_word_map();
 
     // for (Point p : all_points) {

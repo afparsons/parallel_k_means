@@ -1,28 +1,47 @@
 #ifndef VECTORIZER
 #define VECTORIZER
 
-#include <vector>
-#include <string>
-#include <map>
-#include <unordered_set>
-#include <iostream>
-#include <algorithm>
+/**
+ * COMP 481: Applied Parallel Algorithms
+ * Dr. Sandino Vargas-Perez
+ * Final Project - Parallelized K-Means Clustering
+ * 13 March 2019
+ * Andrew Parsons
+ * This program drew heavily from the concepts presented here:
+ * https://medium.com/@MSalnikov/text-clustering-with-k-means-and-tf-idf-f099bcf95183
+ * 
+ * === === === vectorizer.cpp === === === === === === === === === ===
+ * 
+ * This class defines a TF-IDF vectorizer. 
+ */
 
-// tokenizing
+/* === === === INCLUDES === === === === === === */
+
+/* basic */
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <unordered_set>
+#include <map>
+
+/* tokenizing */
 #include <boost/tokenizer.hpp>
 #include <boost/algorithm/string.hpp>
 
-// stemming
+/* stemming */
 #include "../include/oleander/stemming/english_stem.h"
 #include <sstream>
 #include <fstream>
 #include <codecvt>
 
-// parallelizing
+/* parallelizing */
 #include <omp.h>
 
+/* custom */
 #include "point.cpp"
 
+/* === === === CLASS DEFINITION === === === === === === === === === */
 class Vectorizer {
     private:
     /* === === OBJECT DATA === === */
@@ -175,9 +194,11 @@ class Vectorizer {
         double calculate_idf_value(std::wstring word) {
             return double(std::log(double(file_paths.size()) / double(word_map[word])));
         }
-
+ 
         /**
          * build_tf_idf()
+         * @param: vector, the string stems
+         * @return: map, the stems with tf_idf values
          */
         std::map<std::wstring, double> build_tf_idf(std::vector<std::wstring> string_stems) {
             std::map<std::wstring, double> local_tf_vector = build_local_tf_vector(string_stems);
@@ -218,15 +239,23 @@ class Vectorizer {
         }
 
         /**
-         * go()
+         * tf_idf_vectorize()
          * TODO: better name
-         * 
+         * - Creates all_points
+         * - for each file
+         * --- build a vector of word stems
+         * --- if the word vector has at least one word (file isn't empty)
+         * --- --- creates temp vector
+         * --- --- builds tf_idf map for file
+         * --- --- converts map to vector
+         * --- --- adds point to all_points 
          */
-        std::vector<Point> go() {
+        std::vector<Point> tf_idf_vectorize() { 
             std::vector<Point> all_points;
             for (int i = 0; i < file_paths.size(); i++) {
                 std::vector<std::wstring> word_vector = stem(tokenize(read_file_to_wstring(file_paths[i].c_str())));
-                // TODO: better error handling
+                
+                // TODO: better error handling 
                 if (word_vector.size() > 0 ) {
                     std::vector<double> attribute_values;
                     map_values_to_vector(build_tf_idf(word_vector), attribute_values);

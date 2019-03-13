@@ -3,7 +3,7 @@
  * Dr. Sandino Vargas-Perez
  * Final Project - Parallelized K-Means Clustering
  * 14 February 2019
- * Andrew Parsons, Hans Wieland
+ * Andrew Parsons
  * This program is based heavily upon the following two implementations:
  * https://github.com/aditya1601/kmeans-clustering-cpp/blob/master/kmeans.cpp
  * https://github.com/marcoscastro/kmeans/blob/master/kmeans.cpp
